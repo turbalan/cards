@@ -1,0 +1,39 @@
+.card {
+  min-width: 280px;
+  max-width: 400px;
+  padding: 2px 2px 18px;
+  border-radius: $defaultBorderRadius;
+  background-color: #ffffff;
+  box-shadow: $defaultBoxShadow;
+  overflow: hidden;
+
+  figure {
+    display: block;
+    overflow: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: $defaultBorderRadius;
+  }
+
+  &-info {
+    padding: 0 1rem;
+
+    & + .actions {
+      margin-top: 2.5rem;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .actions {
+    padding: 0 1rem;
+  }
+}

@@ -1,0 +1,23 @@
+@import "vars";
+@import "mixins";
+@import "generic.reset";
+@import "generic.normalize";
+@import "generic.box-sizing";
+@import "page.cards";
+@import "component.card";
+@import "component.actions";
+
+html,
+body,
+main {
+  min-width: 320px;
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  background-color: $defaultBg;
+  color: $defaultText;
+  font-family: $defaultFontFamily;
+  line-height: 1.45;
+}

@@ -13,3 +13,16 @@ $defaultBg: $pale;
 $defaultBorderRadius: 12px 12px 0 0;
 $defaultBoxShadow: 0px 0px 12px 6px rgba($black, 0.26);
 $defaultFontFamily: "Comfortaa", sans-serif;
+
+$mobile-lg: 602px;
+$tablet: 862px;
+$desktop: 1200px;
+$desktop-lg: 2200px;
+
+$breakpoints: (
+  mobile: 576px,
+  tablet: 768px,
+  tablet-lg: 992px,
+  desktop: 1200px,
+  desktop-lg: 1600px
+);

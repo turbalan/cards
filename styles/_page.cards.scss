@@ -13,6 +13,7 @@
     margin: 0 10px 2rem;
   }
 
+  // LARGE MOBILE VIEW
   @include mq-between(mobile, tablet) {
     .card {
       width: 100%;
@@ -24,12 +25,15 @@
     }
   }
 
+  // TABLET VIEW
   @include mq-above(tablet) {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     .card {
-      flex-basis: 45%;
+      flex-grow: 0;
+      flex-basis: 47%;
       width: auto;
       align-self: stretch;
     }
@@ -44,6 +48,7 @@
     }
   }
 
+  // DESKTOP VIEW
   @include mq-above(desktop) {
     justify-content: flex-start;
     .card {
@@ -51,6 +56,7 @@
     }
   }
 
+  // LARGE DESKTOP VIEW
   @include mq-above(desktop-lg) {
     .card {
       flex: 0 0 300px;

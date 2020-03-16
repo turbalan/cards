@@ -33,6 +33,7 @@
 
   // LARGE MOBILE VIEW
   @include mq-between(mobile, tablet) {
+    flex-grow: 0;
     padding-bottom: 0;
 
     .card-image {
@@ -44,6 +45,10 @@
       img {
         width: auto;
         max-width: none;
+
+        @include mq-above(tablet) {
+          display: none !important;
+        }
       }
     }
 

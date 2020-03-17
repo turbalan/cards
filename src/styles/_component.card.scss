@@ -33,7 +33,6 @@
 
   // LARGE MOBILE VIEW
   @include mq-between(mobile, tablet) {
-    flex-grow: 0;
     padding-bottom: 0;
 
     .card-image {
@@ -61,7 +60,7 @@
       margin-top: 1rem;
       @include clear-vh-padding;
 
-      button {
+      .btn {
         width: 100%;
       }
     }

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import data from "./data/data.json";
 
-const sortByDateAsc = function(arr) {
+// Sort by newest first
+const sortByDateDesc = function(arr) {
+  // copy the structure of the data.json
   let obj = {
     cards: []
   };
@@ -12,7 +14,9 @@ const sortByDateAsc = function(arr) {
   return obj;
 };
 
-const sortByDateDesc = function(arr) {
+// Sort by oldest first
+const sortByDateAsc = function(arr) {
+  // copy the structure of the data.json
   let obj = {
     cards: []
   };
@@ -22,7 +26,9 @@ const sortByDateDesc = function(arr) {
   return obj;
 };
 
+// Sort alphabetically
 const sortByName = function(arr) {
+  // copy the structure of the data.json
   const obj = {
     cards: []
   };
@@ -42,26 +48,38 @@ const sortByName = function(arr) {
 };
 
 const Cards = () => {
+  // Initiate state
   const [cardData, updateCardData] = useState(data);
+  const [sortedBy, updateSortyedBy] = useState("");
 
   return (
     <article className="cards">
-      <header className="card-sorting">
+      <header className="cards-sorting">
+        Sort by:
         <button
-          className="btn"
-          onClick={() => updateCardData(sortByDateAsc(cardData))}
+          className={`btn ${sortedBy == `descending` ? `is-active` : ``}`}
+          onClick={() => {
+            updateCardData(sortByDateDesc(cardData));
+            updateSortyedBy("descending");
+          }}
         >
           Newest first
         </button>
         <button
-          type="submit"
-          onClick={() => updateCardData(sortByDateDesc(cardData))}
+          className={`btn ${sortedBy == `ascending` ? `is-active` : ``}`}
+          onClick={() => {
+            updateCardData(sortByDateAsc(cardData));
+            updateSortyedBy("ascending");
+          }}
         >
           Oldest first
         </button>
         <button
-          type="submit"
-          onClick={() => updateCardData(sortByName(cardData))}
+          className={`btn ${sortedBy == `byName` ? `is-active` : ``}`}
+          onClick={() => {
+            updateCardData(sortByName(cardData));
+            updateSortyedBy("byName");
+          }}
         >
           Name
         </button>

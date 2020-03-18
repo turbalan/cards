@@ -1,7 +1,7 @@
 import React from "react";
 
 const Card = props => {
-  const { image, title, description, ctaLink } = props;
+  const { image, title, description, ctaLink, ctaText } = props;
   return (
     <section className="card">
       <figure className="card-image">
@@ -12,7 +12,7 @@ const Card = props => {
         <p className="card-text">{description}</p>
         <div className="actions">
           <a hred={ctaLink} className="btn">
-            {props.ctaText}
+            {ctaText}
           </a>
         </div>
       </div>

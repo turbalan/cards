@@ -93,21 +93,24 @@ const CardsListContextProvider = props => {
     setEditItem(item);
   };
 
-  const editCard = (id, image, title, description, ctaLink, ctaText) => {
-    const newCards = cards.map(item => {
-      item.id === id
-        ? {
-            id,
-            image,
-            title,
-            description,
-            ctaLink,
-            ctaText
-          }
-        : item;
+  const editCard = (id, image, title, description, ctaLink, ctaText, date) => {
+    const newCards = cards.map(card => {
+      if (card.id === id) {
+        return {
+          id,
+          image,
+          title,
+          description,
+          ctaLink,
+          ctaText,
+          pubdate: new Date()
+        };
+      } else {
+        return card;
+      }
     });
-    setCards(newCards);
     setEditItem(null);
+    setCards([...newCards]);
   };
 
   // Sort by oldest first

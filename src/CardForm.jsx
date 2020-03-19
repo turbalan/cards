@@ -1,7 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CardsListContext } from "./context/CardsListContext";
 const CardForm = () => {
-  const { addCard, clearCards } = useContext(CardsListContext);
+  const { addCard, clearCards, editItem, editCard } = useContext(
+    CardsListContext
+  );
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,13 +26,44 @@ const CardForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    addCard(image, title, description, ctaLink, ctaText);
-    setImage("");
-    setTitle("");
-    setDescription("");
-    setCtaLink("");
-    setCtaText("");
+    if (editItem) {
+      console.log(editItem.id);
+
+      editCard(
+        editItem.id,
+        image,
+        title,
+        description,
+        ctaLink,
+        ctaText,
+        editItem.pubdate
+      );
+    } else {
+      addCard(image, title, description, ctaLink, ctaText);
+      setImage("");
+      setTitle("");
+      setDescription("");
+      setCtaLink("");
+      setCtaText("");
+    }
   };
+
+  useEffect(() => {
+    if (editItem !== null) {
+      setImage(editItem.image);
+      setTitle(editItem.title);
+      setDescription(editItem.description);
+      setCtaLink(editItem.ctaLink);
+      setCtaText(editItem.ctaText);
+      console.log(editItem);
+    } else {
+      setImage("");
+      setTitle("");
+      setDescription("");
+      setCtaLink("");
+      setCtaText("");
+    }
+  }, [editItem]);
 
   return (
     <div className="card-form-container">

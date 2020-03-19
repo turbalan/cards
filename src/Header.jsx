@@ -11,15 +11,13 @@ const Header = () => {
     sortByName
   } = useContext(CardsListContext);
 
-  let obj = cards;
-
   return (
     <header className="cards-sorting">
       Sort by:
       <button
         className={`btn ${sortedBy == `descending` ? `is-active` : ``}`}
         onClick={() => {
-          sortByDateDesc(obj);
+          sortByDateDesc(cards);
           updateSortyedBy("descending");
         }}
       >
@@ -28,17 +26,7 @@ const Header = () => {
       <button
         className={`btn ${sortedBy == `ascending` ? `is-active` : ``}`}
         onClick={() => {
-          setCards(
-            ({
-              id,
-              image,
-              title,
-              description,
-              ctaLink,
-              ctaText,
-              pubdate
-            } = sortByDateAsc(cards))
-          );
+          sortByDateAsc(cards);
           updateSortyedBy("ascending");
         }}
       >

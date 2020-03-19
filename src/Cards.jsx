@@ -4,6 +4,9 @@ import Card from "./Card";
 
 const Cards = () => {
   const { cards } = useContext(CardsListContext);
+  const funclog = () => {
+    console.log(cards);
+  };
   return (
     <article className="cards">
       {cards.length ? (
@@ -11,6 +14,11 @@ const Cards = () => {
       ) : (
         <div>Nothing to render</div>
       )}
+      <button
+        onClick={() => {
+          funclog();
+        }}
+      ></button>
     </article>
   );
 };

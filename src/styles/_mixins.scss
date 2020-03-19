@@ -1,3 +1,4 @@
+// Clear button styles
 @mixin clearBtn {
   border: 0;
   background: none;
@@ -5,6 +6,7 @@
   padding: 0;
 }
 
+// Media query > over
 @mixin mq-above($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-value: map-get($breakpoints, $breakpoint);
@@ -17,6 +19,7 @@
   }
 }
 
+// Media query < uder
 @mixin mq-below($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-value: map-get($breakpoints, $breakpoint);
@@ -29,6 +32,7 @@
   }
 }
 
+// Media query > between <
 @mixin mq-between($lower, $upper) {
   @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
     $lower-breakpoint: map-get($breakpoints, $lower);
@@ -48,6 +52,7 @@
   }
 }
 
+// Clear paddings
 @mixin clear-v-padding {
   padding-top: 0;
   padding-bottom: 0;

@@ -61,7 +61,14 @@ const CardsListContextProvider = props => {
   const addCard = (image, title, description, ctaLink, ctaText) => {
     setCards([
       ...cards,
-      { id: uuid(), image, title, description, ctaLink, ctaText }
+      {
+        id: uuid(),
+        image,
+        title,
+        description,
+        ctaLink,
+        ctaText
+      }
     ]);
   };
 
@@ -81,23 +88,76 @@ const CardsListContextProvider = props => {
   const editCard = (id, image, title, description, ctaLink, ctaText) => {
     const newCards = cards.map(item => {
       item.id === id
-        ? { id, image, title, description, ctaLink, ctaText }
+        ? {
+            id,
+            image,
+            title,
+            description,
+            ctaLink,
+            ctaText
+          }
         : item;
     });
     setCards(newCards);
     setEditItem(null);
   };
 
+  // Sort by newest first
+  const sortByDateDesc = function(arr) {
+    // copy the structure of the data.json
+    let obj = {
+      cards: []
+    };
+    obj.cards = arr.cards.sort(
+      (a, b) => new Date(a.pubdate) - new Date(b.pubdate)
+    );
+    return obj;
+  };
+
+  // Sort by oldest first
+  const sortByDateAsc = function(arr) {
+    // copy the structure of the data.json
+    let obj = {
+      cards: []
+    };
+    obj.cards = arr.cards.sort(
+      (a, b) => new Date(b.pubdate) - new Date(a.pubdate)
+    );
+    return obj;
+  };
+
+  // Sort alphabetically
+  const sortByName = function(arr) {
+    let obj = [];
+    obj = arr.sort(function(a, b) {
+      var titleA = a.title.toUpperCase();
+      var titleB = b.title.toUpperCase();
+      if (titleA < titleB) {
+        return -1;
+      }
+      if (titleA > titleB) {
+        return 1;
+      }
+      // titles must be equal
+      return 0;
+    });
+    setCards(obj);
+  };
+
   return (
     <CardsListContext.Provider
       value={{
         cards,
+        setCards,
         addCard,
         removeCard,
         clearCards,
         findCard,
         editCard,
-        editItem
+        editItem,
+        sortByDateDesc,
+        sortByDateAsc,
+        sortByName
       }}
     >
       {props.children}

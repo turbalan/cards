@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 export const CardsListContext = createContext();
@@ -13,7 +13,8 @@ const CardsListContextProvider = props => {
         "Lipslide masonite berm mini ramp Christ air Billy Ruff. Betty stalefish dude boned out Vans Calfornia Daze 1080. 1080 late Memory Screen half-flip handplant ledge. Tommy Guerrero wax rip grip transfer sick yeah. Risers ollie lip feeble nollie Sacto.",
       ctaLink: "https://duckduckgo.com",
       ctaText: "CTA",
-      pubdate: "2020-03-08 11:32:51"
+      pubdate:
+        "Thu Mar 19 2020 15:28:59 GMT+0200 (Eastern European Standard Time)"
     },
     {
       id: "5ca38ed7a59a5a1240731e17",
@@ -23,7 +24,8 @@ const CardsListContextProvider = props => {
         "Aerial steps ho-ho Tracker kidney. Ho-ho 360 hang-up disaster transition. Slappy hang-up carve shinner nosegrind.",
       ctaLink: "https://duckduckgo.com",
       ctaText: "CTA",
-      pubdate: "2020-03-08 10:04:52"
+      pubdate:
+        "Thu Mar 19 2020 14:28:59 GMT+0200 (Eastern European Standard Time)"
     },
     {
       id: "5cab678ca59a5a3a2e3b99a4",
@@ -33,7 +35,8 @@ const CardsListContextProvider = props => {
         "Crooked grind shoveit concave baseplate transfer Jim Phillips. Freestyle Jeff Phillips rock and roll air hanger hardware. Body varial speed wobbles lipslide alley oop nose slide.",
       ctaLink: "https://duckduckgo.com",
       ctaText: "CTA",
-      pubdate: "2020-03-08 09:09:32"
+      pubdate:
+        "Thu Mar 19 2020 15:03:59 GMT+0200 (Eastern European Standard Time)"
     },
     {
       id: "5cab51c2a59a5a15555943ed",
@@ -43,7 +46,8 @@ const CardsListContextProvider = props => {
         "Wheels rock and roll Colby Carter nose gap kingpin. Alley oop nosebone body varial wheels slam. Nosepicker Pushead gap goofy footed full-cab sick.",
       ctaLink: "https://duckduckgo.com",
       ctaText: "CTA",
-      pubdate: "2020-03-08 19:10:52"
+      pubdate:
+        "Thu Mar 19 2020 15:08:59 GMT+0200 (Eastern European Standard Time)"
     },
     {
       id: "5ca388e1a59a5a12444ba107",
@@ -53,12 +57,14 @@ const CardsListContextProvider = props => {
         "Alley oop kickturn 50-50 boned out quarter pipe coffin. Nose slide invert face plant Ray Barbee flail deck coping. Concave G&S gnar bucket griptape wheels shoveit flail",
       ctaLink: "https://duckduckgo.com",
       ctaText: "CTA",
-      pubdate: "2020-03-08 15:23:52"
+      pubdate:
+        "Thu Mar 19 2020 15:18:59 GMT+0200 (Eastern European Standard Time)"
     }
   ]);
   const [editItem, setEditItem] = useState(null);
 
   const addCard = (image, title, description, ctaLink, ctaText) => {
+    const date = new Date();
     setCards([
       ...cards,
       {
@@ -67,7 +73,8 @@ const CardsListContextProvider = props => {
         title,
         description,
         ctaLink,
-        ctaText
+        ctaText,
+        pubdate: date
       }
     ]);
   };
@@ -102,28 +109,23 @@ const CardsListContextProvider = props => {
     setEditItem(null);
   };
 
-  // Sort by newest first
+  // Sort by oldest first
   const sortByDateDesc = function(arr) {
-    // copy the structure of the data.json
-    let obj = {
-      cards: []
-    };
-    obj.cards = arr.cards.sort(
-      (a, b) => new Date(a.pubdate) - new Date(b.pubdate)
-    );
+    let obj = {};
+    obj = arr.sort((a, b) => new Date(a.pubdate) - new Date(b.pubdate));
+    console.log(obj);
+
     return obj;
   };
 
-  // Sort by oldest first
+  // Sort by newest first
   const sortByDateAsc = function(arr) {
-    // copy the structure of the data.json
-    let obj = {
-      cards: []
-    };
-    obj.cards = arr.cards.sort(
-      (a, b) => new Date(b.pubdate) - new Date(a.pubdate)
+    let obj = arr.sort((a, b) => new Date(b.pubdate) - new Date(a.pubdate));
+    console.log(obj);
+    // return obj;
+    setCards(
+      ({ id, image, title, description, ctaLink, ctaText, pubdate } = obj)
     );
-    return obj;
   };
 
   // Sort alphabetically

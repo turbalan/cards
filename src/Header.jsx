@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { CardsListContext } from "./context/CardsListContext";
 
 const Header = () => {
@@ -11,32 +11,44 @@ const Header = () => {
     sortByName
   } = useContext(CardsListContext);
 
+  let obj = cards;
+
   return (
     <header className="cards-sorting">
       Sort by:
       <button
         className={`btn ${sortedBy == `descending` ? `is-active` : ``}`}
         onClick={() => {
-          sortByDateDesc(cards);
+          sortByDateDesc(obj);
           updateSortyedBy("descending");
-        }}
-      >
-        Newest first
-      </button>
-      <button
-        className={`btn ${sortedBy == `ascending` ? `is-active` : ``}`}
-        onClick={() => {
-          setCards(sortByDateAsc(cards));
-          updateSortyedBy("ascending");
         }}
       >
         Oldest first
       </button>
       <button
+        className={`btn ${sortedBy == `ascending` ? `is-active` : ``}`}
+        onClick={() => {
+          setCards(
+            ({
+              id,
+              image,
+              title,
+              description,
+              ctaLink,
+              ctaText,
+              pubdate
+            } = sortByDateAsc(cards))
+          );
+          updateSortyedBy("ascending");
+        }}
+      >
+        Newest first
+      </button>
+      <button
         className={`btn ${sortedBy == `byName` ? `is-active` : ``}`}
         onClick={() => {
-          setCards(sortByName(cards));
           updateSortyedBy("byName");
+          sortByName(cards);
         }}
       >
         Name

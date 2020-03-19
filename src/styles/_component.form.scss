@@ -1,0 +1,26 @@
+.card-form-container {
+  max-width: 480px;
+  margin: 100px auto;
+
+  input {
+    width: 100%;
+    margin: 0 0 0.75rem;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid $lightBlue;
+    font-size: 12px;
+    &:focus {
+      border-bottom-color: $darkBrown;
+      outline: none;
+    }
+  }
+
+  .actions {
+    display: flex;
+
+    .btn {
+      margin: 5px;
+    }
+  }
+}

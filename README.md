@@ -1,8 +1,10 @@
 # Cards
 
-A list of cards which needs to be responsive and the user must have the ability to sort, add and remove cards
+A list of cards which needs to be responsive and the user must have the ability to sort, add and remove cards.
 
-In `terminal`
+## To run the app
+
+In `terminal` open the extracted folder, check for the node version install dependencies and run the `dev` script to tun the application.
 
 ```
 $cd cards
@@ -18,7 +20,4 @@ $ npm install
 $ npm run dev
 ```
 
-You can check out the git commit history. I didn't adhere to the gitflow structure, as I think it's not necessary for a small project like this one.
-
 - You can see the static site code by checking out the `html-css` branch.
-- If you'd like to see how I implemented sorting in the first place and it works - check out the `sorting` branch

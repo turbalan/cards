@@ -1,6 +1,24 @@
 .btn {
+  @include clearBtn;
   &:active {
     // when active push the button down a pixel
     transform: translateY(1px);
+  }
+  &:visited {
+    text-decoration: none;
+  }
+
+  &--clearForm {
+    &:hover {
+      background-color: darkred;
+    }
+  }
+
+  &--closeAdd {
+    @include clearBtn;
+  }
+
+  .fas {
+    margin-right: 4px;
   }
 }

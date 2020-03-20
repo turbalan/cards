@@ -62,6 +62,7 @@ const CardsListContextProvider = props => {
     }
   ]);
   const [editItem, setEditItem] = useState(null);
+  const [addItem, setAddItem] = useState(null);
 
   const addCard = (image, title, description, ctaLink, ctaText) => {
     const date = new Date();
@@ -77,6 +78,7 @@ const CardsListContextProvider = props => {
         pubdate: date
       }
     ]);
+    setAddItem(null);
   };
 
   const removeCard = id => {
@@ -92,46 +94,41 @@ const CardsListContextProvider = props => {
     setEditItem(item);
   };
 
-  const editCard = (id, image, title, description, ctaLink, ctaText) => {
-    const newCards = cards.map(item => {
-      item.id === id
-        ? {
-            id,
-            image,
-            title,
-            description,
-            ctaLink,
-            ctaText
-          }
-        : item;
+  const editCard = (id, image, title, description, ctaLink, ctaText, date) => {
+    const newCards = cards.map(card => {
+      if (card.id === id) {
+        return {
+          id,
+          image,
+          title,
+          description,
+          ctaLink,
+          ctaText,
+          pubdate: new Date()
+        };
+      } else {
+        return card;
+      }
     });
-    setCards(newCards);
     setEditItem(null);
+    setCards([...newCards]);
   };
 
   // Sort by oldest first
   const sortByDateDesc = function(arr) {
-    let obj = {};
-    obj = arr.sort((a, b) => new Date(a.pubdate) - new Date(b.pubdate));
-    console.log(obj);
-
-    return obj;
+    let obj = arr.sort((a, b) => new Date(a.pubdate) - new Date(b.pubdate));
+    setCards([...obj]);
   };
 
   // Sort by newest first
   const sortByDateAsc = function(arr) {
     let obj = arr.sort((a, b) => new Date(b.pubdate) - new Date(a.pubdate));
-    console.log(obj);
-    // return obj;
-    setCards(
-      ({ id, image, title, description, ctaLink, ctaText, pubdate } = obj)
-    );
+    setCards([...obj]);
   };
 
   // Sort alphabetically
-  const sortByName = function(arr) {
-    let obj = [];
-    obj = arr.sort(function(a, b) {
+  const sortByName = function() {
+    let obj = cards.sort(function(a, b) {
       var titleA = a.title.toUpperCase();
       var titleB = b.title.toUpperCase();
       if (titleA < titleB) {
@@ -143,7 +140,8 @@ const CardsListContextProvider = props => {
       // titles must be equal
       return 0;
     });
-    setCards(obj);
+
+    setCards([...obj]);
   };
 
   return (
@@ -157,6 +155,8 @@ const CardsListContextProvider = props => {
         findCard,
         editCard,
         editItem,
+        addItem,
+        setAddItem,
         sortByDateDesc,
         sortByDateAsc,
         sortByName

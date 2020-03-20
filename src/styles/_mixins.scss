@@ -1,9 +1,10 @@
 // Clear button styles
 @mixin clearBtn {
+  padding: 0;
   border: 0;
   background: none;
   box-shadow: none;
-  padding: 0;
+  text-decoration: none;
 }
 
 // Media query > over

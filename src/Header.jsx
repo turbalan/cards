@@ -1,17 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CardsListContext } from "./context/CardsListContext";
 
 const Header = () => {
   const [sortedBy, updateSortyedBy] = useState("");
   const {
     cards,
-    setCards,
+    addItem,
+    setAddItem,
     sortByDateAsc,
     sortByDateDesc,
     sortByName
   } = useContext(CardsListContext);
-
-  let obj = cards;
 
   return (
     <header className="cards-sorting">
@@ -19,7 +18,7 @@ const Header = () => {
       <button
         className={`btn ${sortedBy == `descending` ? `is-active` : ``}`}
         onClick={() => {
-          sortByDateDesc(obj);
+          sortByDateDesc(cards);
           updateSortyedBy("descending");
         }}
       >
@@ -28,17 +27,7 @@ const Header = () => {
       <button
         className={`btn ${sortedBy == `ascending` ? `is-active` : ``}`}
         onClick={() => {
-          setCards(
-            ({
-              id,
-              image,
-              title,
-              description,
-              ctaLink,
-              ctaText,
-              pubdate
-            } = sortByDateAsc(cards))
-          );
+          sortByDateAsc(cards);
           updateSortyedBy("ascending");
         }}
       >
@@ -52,6 +41,15 @@ const Header = () => {
         }}
       >
         Name
+      </button>
+      <button
+        onClick={() => {
+          setAddItem(true);
+        }}
+        className="btn btn--add"
+      >
+        <i className="fas fa-plus-circle"></i>
+        Add a card
       </button>
     </header>
   );

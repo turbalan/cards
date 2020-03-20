@@ -62,6 +62,7 @@ const CardsListContextProvider = props => {
     }
   ]);
   const [editItem, setEditItem] = useState(null);
+  const [addItem, setAddItem] = useState(null);
 
   const addCard = (image, title, description, ctaLink, ctaText) => {
     const date = new Date();
@@ -77,6 +78,7 @@ const CardsListContextProvider = props => {
         pubdate: date
       }
     ]);
+    setAddItem(null);
   };
 
   const removeCard = id => {
@@ -89,7 +91,6 @@ const CardsListContextProvider = props => {
 
   const findCard = id => {
     const item = cards.find(card => card.id === id);
-    console.log(item);
     setEditItem(item);
   };
 
@@ -116,14 +117,12 @@ const CardsListContextProvider = props => {
   // Sort by oldest first
   const sortByDateDesc = function(arr) {
     let obj = arr.sort((a, b) => new Date(a.pubdate) - new Date(b.pubdate));
-    console.log(obj);
     setCards([...obj]);
   };
 
   // Sort by newest first
   const sortByDateAsc = function(arr) {
     let obj = arr.sort((a, b) => new Date(b.pubdate) - new Date(a.pubdate));
-    console.log(obj);
     setCards([...obj]);
   };
 
@@ -141,7 +140,6 @@ const CardsListContextProvider = props => {
       // titles must be equal
       return 0;
     });
-    console.log(obj);
 
     setCards([...obj]);
   };
@@ -157,6 +155,8 @@ const CardsListContextProvider = props => {
         findCard,
         editCard,
         editItem,
+        addItem,
+        setAddItem,
         sortByDateDesc,
         sortByDateAsc,
         sortByName

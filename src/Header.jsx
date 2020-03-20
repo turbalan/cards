@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CardsListContext } from "./context/CardsListContext";
 
 const Header = () => {
   const [sortedBy, updateSortyedBy] = useState("");
   const {
     cards,
-    setCards,
+    addItem,
+    setAddItem,
     sortByDateAsc,
     sortByDateDesc,
     sortByName
@@ -40,6 +41,15 @@ const Header = () => {
         }}
       >
         Name
+      </button>
+      <button
+        onClick={() => {
+          setAddItem(true);
+        }}
+        className="btn btn--add"
+      >
+        <i className="fas fa-plus-circle"></i>
+        Add a card
       </button>
     </header>
   );
